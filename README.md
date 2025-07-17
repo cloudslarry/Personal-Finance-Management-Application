@@ -1,127 +1,130 @@
 # Personal Finance Management System
 
-A command-line application for managing personal finances, tracking income and expenses, setting budgets, and generating financial reports.
+A comprehensive personal finance management application with both CLI and GUI interfaces, allowing users to track income, expenses, manage budgets, and generate financial reports.
 
 ## Features
 
-- User Registration and Authentication
-- Income and Expense Tracking
-- Budget Management
-- Monthly and Yearly Financial Reports
-- Category-wise Expense Analysis
-- Budget Status Monitoring
+- User authentication (registration and login)
+- Income and expense tracking
+- Budget management by categories
+- Monthly and yearly financial reports
+- Category-wise spending analysis
+- Dual interface support (CLI and GUI)
+- Secure password handling
+- SQLite database for data persistence
 
 ## Installation
 
-1. Clone the repository or download the source code
-2. Create a virtual environment (recommended):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. Install required packages:
+1. Clone the repository
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
 ## Usage
 
-### User Management
+### GUI Interface
 
-1. Register a new user:
+To start the graphical interface:
+```bash
+python finance_gui.py
+```
+
+The GUI provides intuitive access to all features:
+- Login/Register through the welcome screen
+- Add transactions using the transaction form
+- Set budgets using the budget management panel
+- View reports through the reporting section
+
+### CLI Interface
+
+The command-line interface supports all core functionalities:
+
+1. **User Management**
    ```bash
+   # Register new user
    python finance_manager.py register
-   ```
 
-2. Login:
-   ```bash
+   # Login
    python finance_manager.py login
    ```
 
-### Transaction Management
-
-1. Add a new transaction:
+2. **Transaction Management**
    ```bash
+   # Add transaction
    python finance_manager.py add-transaction
+
+   # View transactions
+   python finance_manager.py view-transactions
    ```
-   You'll be prompted to enter:
-   - Transaction type (income/expense)
-   - Category
-   - Amount
-   - Description
-   - Login credentials
 
-### Budget Management
-
-1. Set a budget for a category:
+3. **Budget Management**
    ```bash
+   # Set budget
    python finance_manager.py set-budget
-   ```
 
-2. Check budget status:
-   ```bash
+   # Check budget status
    python finance_manager.py check-budget
    ```
 
-### Reports
-
-1. Generate monthly report:
+4. **Financial Reports**
    ```bash
+   # Monthly report
    python finance_manager.py monthly-report
-   ```
 
-2. Generate yearly report:
-   ```bash
+   # Yearly report
    python finance_manager.py yearly-report
    ```
 
 ## Project Structure
 
-- `finance_manager.py`: Main application file with CLI interface
-- `transactions.py`: Transaction management functionality
-- `budget.py`: Budget management functionality
-- `reports.py`: Financial reporting functionality
-- `requirements.txt`: Required Python packages
+- `finance_manager.py`: Core application and CLI interface
+- `finance_gui.py`: Graphical user interface
+- `transactions.py`: Transaction management logic
+- `budget.py`: Budget tracking functionality
+- `reports.py`: Financial report generation
+- `test_finance_manager.py`: Test suite
+- `requirements.txt`: Project dependencies
+- `EXPLAIN.md`: Technical documentation
 
 ## Database Schema
 
-### Users Table
-- id (PRIMARY KEY)
-- username (UNIQUE)
-- password (hashed)
-- created_at
-
-### Transactions Table
-- id (PRIMARY KEY)
-- user_id (FOREIGN KEY)
-- type (income/expense)
-- category
-- amount
-- description
-- date
-
-### Budgets Table
-- id (PRIMARY KEY)
-- user_id (FOREIGN KEY)
-- category
-- amount
-- month
-- year
+- **Users**: Stores user credentials and information
+- **Transactions**: Records all financial transactions
+- **Budgets**: Stores budget settings by category
 
 ## Security Features
 
-- Passwords are hashed using bcrypt
-- SQLite database for data persistence
-- Input validation and error handling
+- Password hashing using bcrypt
+- Secure session management
+- Input validation and sanitization
+- No plaintext password storage
+
+## Testing
+
+Run the test suite:
+```bash
+python -m pytest test_finance_manager.py
+```
 
 ## Dependencies
 
-- click: Command-line interface creation
 - bcrypt: Password hashing
-- sqlite3: Database management
-- tabulate: Formatted table output
-- pytest: Unit testing
+- click: CLI interface
+- tabulate: Data presentation
+- pytest: Testing framework
+- python-dotenv: Environment management
+- tkinter: GUI (built-in)
+- sqlite3: Database (built-in)
 
 ## Contributing
 
-Feel free to submit issues, fork the repository, and create pull requests for any improvements.
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+MIT License - feel free to use and modify for your needs.
